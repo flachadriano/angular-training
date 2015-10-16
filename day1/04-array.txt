@@ -1,0 +1,8 @@
+Array
+
+Com base no produto criado:
+
+a - Crie a propriedade palavrasChave(array) no objeto produto e inicialize com 3 palavras chaves
+b - Crie uma função para retornar a quantidade de palavras chaves do produto
+c - Crie uma função incluirPalavraChave utilizando o método push
+d - Crie uma funçāo apagarPalavraChave utilizando o método splice

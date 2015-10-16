@@ -1,0 +1,8 @@
+Função Fabrica X Construtora
+
+Com base no objeto produto contendo codigo, descricao, emEstoque e detalhes, criado no exercicio anterior:
+
+a - Crie o objeto produto por meio de uma função fabrica
+b - Crie o objeto produto por meio de uma função construtora (operador new)
+
+Verifique os resultados em http://repl.it

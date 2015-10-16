@@ -1,0 +1,8 @@
+Function
+
+Com base no objeto produto contendo o codigo, descricao, emEstoque e detalhes, criado no exercicio anterior:
+
+a - Crie uma função chamada imprimirDados e atribua ao produto, retornando todas as proriedades do objeto, incluindo os detalhes
+b - Invoque a função imprimirDados utilizando a função call, passando o objeto produto como parametro
+
+Verifique os resultados em http://repl.it

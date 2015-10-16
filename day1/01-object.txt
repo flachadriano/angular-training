@@ -1,0 +1,9 @@
+Object
+
+a - Crie um objeto chamado produto com codigo (number), descricao (string)
+b - Adicione as propriedades emEstoque(boolean), preco(number) e detalhes(object)
+c - Modifique a descrição do produto
+d - Apague a propriedade emEstoque
+e - Inclua novas propriedade nos detalhes do produto
+
+Verifique os resultados em http://repl.it
