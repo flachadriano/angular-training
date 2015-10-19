@@ -1,0 +1,10 @@
+Aplicando Filtros
+
+A segunda release tem como objetivo melhorar a usabilidade do sistema, melhorando a forma de apresentar os dados e possibilitando ao usuário utilizar o sistema de forma mais assertiva e segura.
+
+Os seguintes requisitos devem ser desenvolvidos:
+
+1 - Formatar os valores monetários utilizando o pacote de localizaçāo brasileiro
+2 - Buscar os itens do cardápio
+3 - Ordenar os itens do cardápio por descriçāo ou preço
+4 - Incluir a data e hora em cada pedido no formato dd/MM/yyyy hh:mm

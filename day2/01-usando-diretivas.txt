@@ -1,0 +1,9 @@
+Usando Diretivas - Parte 1
+
+A primeira release devera possibilitar a listagem de todos os itens do card'apio com a descriçāo do item e o preço. Alem disso, dever'a ser possivel exibir a descriçāo do item do card'apio e realizar pedidos.
+
+Os seguintes requisitos devem ser desenvolvidos:
+
+1 - Listar itens do card'apio
+2 - Fazer pedido informando a quantidade e o item desejado, selecionando um dos itens do card'apio por meio de um campo do tipo select
+3 - Exibir os pedidos em uma tabela

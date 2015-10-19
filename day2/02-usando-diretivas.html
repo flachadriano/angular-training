@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="lancheria">
+<head>
+	<meta charset="utf-8">
+	<title>Flach Lancheria</title>
+	<script type="text/javascript" src="../../libs/angular-1.4.7/angular.js"></script>
+	<script type="text/javascript">
+		angular.module('lancheria', []);
+		angular.module('lancheria').controller('lancheriaCtrl', function($scope) {
+			$scope.itens = [
+				{descricao: "Sardinha", preco: 12},
+				{descricao: "Chopp", preco: 8}
+			];
+			$scope.pedidos = [];
+
+			$scope.adicionarPedido = function(pedido) {
+				$scope.pedidos.push(pedido);
+				delete $scope.pedido;
+			};
+
+			$scope.removerPedido = function(pedidos) {
+				$scope.pedidos = pedidos.filter(function(pedido) {
+					return !pedido.selecionado;
+				});
+			};
+
+      $scope.totalPedidos = function(pedidos) {
+				return pedidos.reduce(function(acumulador, pedido) {
+					return acumulador + (pedido.quantidade * pedido.item.preco);
+				}, 0);
+      };
+		});
+	</script>
+</head>
+<body ng-controller="lancheriaCtrl">
+
+	<table ng-if="pedidos.length > 0">
+		<tr>
+			<th></th>
+			<th>Item</th>
+			<th>Quantidade</th>
+      <th>Subtotal</th>
+		</tr>
+		<tr ng-repeat="pedido in pedidos">
+			<td><input type="checkbox" ng-model="pedido.selecionado"></td>
+			<td>{{pedido.item.descricao}}</td>
+			<td>{{pedido.quantidade}}</td>
+      <td>{{pedido.quantidade * pedido.item.preco}}</td>
+		</tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Total</td>
+      <td>{{totalPedidos(pedidos)}}</td>
+    </tr>
+	</table>
+	<br/>
+
+	<select ng-model="pedido.item" ng-options="item.descricao for item in itens">
+		<option value="">Selecione o item</option>
+	</select><br/>
+	<input type="text" placeholder="Quantidade" ng-model="pedido.quantidade"><br/>
+	<input type="button" value="Adicionar" ng-click="adicionarPedido(pedido)">
+	<br/><br/>
+
+	<input type="button" value="Remover pedidos selecionados" ng-click="removerPedido(pedidos)">
+
+</body>
+</html>

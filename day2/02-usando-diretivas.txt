@@ -1,0 +1,12 @@
+Usando Diretivas - Parte 2
+
+A primeira release devera possibilitar a listagem de todos os itens do card'apio com a descriçāo do item e o preço. Alem disso, dever'a ser possivel exibir a descriçāo do item do card'apio e realizar pedidos.
+
+Os seguintes requisitos devem ser desenvolvidos:
+
+1 - Adicionar a coluna subtotal na tabela de pedidos
+2 - Exibir total de todos os pedidos abaixo da tabela
+3 - Nāo exibir a tabela de pedidos se nāo existir nenhum pedido
+4 - cancelar um pedido
+5 - Incluir um rodap'e como um include
+6 - Desabilitar o botāo caso nāo tenha quantidade ou o item

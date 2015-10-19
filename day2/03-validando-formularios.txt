@@ -1,0 +1,11 @@
+Validando Formul'arios
+
+A segunda release tem como objetivo melhorar a usabilidade do sistema, melhorando a forma de apresentar os dados e posibilitando ao usuário utilizar o sistema de forma mais assertiva e segura.
+
+Os seguintes requisitos devem ser desenvolvidos:
+
+1 - Validar o formulário de pedidos, deixando o botāo desativado se o formulário nāo estiver preenchido corretamente
+2 - Criar as mensagens de validaçāo de maneira apropriada, utilizando os estados $pristine e $dirty. Utilize o $setPristine() para resetar as campos
+3 - Adicione um campo chamado telefone e crie um validador utilizando ngPattern
+4 - A quantidade mínima deve ser 1 e a máxima 10
+EXTRA - Utilizar ngClass para aplicar uma classe e deixar a borda do campo em vermelho caso existam erros de validaçāo

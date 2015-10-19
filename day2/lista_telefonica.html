@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica">
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/ angular.min.js"></script>
+
+	<script type="text/javascript">
+		angular.module('listaTelefonica', []);
+		angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function ($scope) {
+			$scope.titulo = "Lista Telefonica";
+			$scope.contatos = [
+				{nome: "Joao", telefone: "9988-7766"},
+				{nome: "Maria", telefone: "5544-3322"},
+				{nome: "Ana", telefone: "1100-9988"}
+			];
+
+			$scope.adicionarContato = function() {
+				console.log("adicionarContato");
+			};
+		});
+	</script>
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+	<h3>{{titulo}}</h3>
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Telefone</th>
+		</tr>
+		<tr ng-repeat="contato in contatos">
+			<td>{{contato.nome}}</td>
+			<td>{{contato.telefone}}</td>
+		</tr>
+	</table>
+	<input type="text" ng-model="nome" placeholder="Nome">
+	<input type="text" ng-model="telefone" placeholder="Telefone">
+	<button ng-click="adicionarContato">Adicionar Contato</button>
+</body>
+</html>

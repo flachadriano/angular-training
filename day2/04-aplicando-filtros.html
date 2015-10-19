@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="lancheria">
+<head>
+	<meta charset="utf-8">
+	<title>Flach Lancheria</title>
+	<script type="text/javascript" src="../../libs/angular-1.4.7/angular.js"></script>
+	<script type="text/javascript">
+		angular.module('lancheria', []);
+		angular.module('lancheria').controller('lancheriaCtrl', function($scope) {
+			$scope.itens = [
+				{descricao: "Sardinha", preco: 12},
+				{descricao: "Chopp", preco: 8}
+			];
+			$scope.pedidos = [];
+			$scope.campo = 'item';
+			$scope.direction = false;
+
+			$scope.adicionarPedido = function(pedido) {
+        pedido.data = new Date();
+				$scope.pedidos.push(pedido);
+				delete $scope.pedido;
+        $scope.pedidoForm.$setPristine();
+			};
+
+			$scope.removerPedido = function(pedidos) {
+				$scope.pedidos = pedidos.filter(function(pedido) {
+					return !pedido.selecionado;
+				});
+			};
+
+      $scope.totalPedidos = function(pedidos) {
+				return pedidos.reduce(function(acumulador, pedido) {
+					return acumulador + (pedido.quantidade * pedido.item.preco);
+				}, 0);
+      };
+
+			$scope.ordenarPor = function(campo) {
+				$scope.campo = campo;
+				$scope.direction = !$scope.direction;
+			};
+		});
+	</script>
+</head>
+<body ng-controller="lancheriaCtrl">
+
+  <input type="text" placeholder="Pesquisar" ng-model="pesquisar">
+  <br/><br/>
+
+	<table ng-if="pedidos.length > 0">
+		<tr>
+			<th></th>
+      <th>Data</th>
+			<th><a href="#" ng-click="ordenarPor('item')">Item</a></th>
+			<th><a href="#" ng-click="ordenarPor('quantidade')">Quantidade</a></th>
+      <th>Subtotal</th>
+		</tr>
+		<tr ng-repeat="pedido in pedidos | filter:pesquisar | orderBy:campo:direction">
+			<td><input type="checkbox" ng-model="pedido.selecionado"></td>
+      <td>{{pedido.data | date:'dd/MM/yyyy hh:mm' }}</td>
+			<td>{{pedido.item.descricao}}</td>
+			<td>{{pedido.quantidade | currency}}</td>
+      <td>{{pedido.quantidade * pedido.item.preco | currency}}</td>
+		</tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Total</td>
+      <td>{{totalPedidos(pedidos) | currency}}</td>
+    </tr>
+	</table>
+	<br/>
+
+  <form name="pedidoForm">
+    <input type="text" name="telefone" placeholder="Telefone" ng-model="pedido.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"><br/>
+  	<select name="item" ng-model="pedido.item" ng-options="item.descricao for item in itens" ng-required="true">
+  		<option value="">Selecione o item</option>
+  	</select><br/>
+  	<input type="text" name="quantidade" placeholder="Quantidade" ng-model="pedido.quantidade" ng-required="true"><br/>
+  </form>
+
+  <span ng-show="pedidoForm.item.$dirty && pedidoForm.item.$invalid">Selecione o item desejado. </span>
+  <span ng-show="pedidoForm.quantidade.$dirty && pedidoForm.quantidade.$invalid">Informe a quantidade desejada. </span>
+
+  <input type="button" value="Adicionar" ng-disabled="pedidoForm.$invalid" ng-click="adicionarPedido(pedido)">
+	<br/><br/>
+
+	<input type="button" value="Remover pedidos selecionados" ng-click="removerPedido(pedidos)">
+
+</body>
+</html>

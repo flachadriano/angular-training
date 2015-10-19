@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="lancheria">
+<head>
+	<meta charset="utf-8">
+	<title>Flach Lancheria</title>
+	<script type="text/javascript" src="../../libs/angular-1.4.7/angular.js"></script>
+	<script type="text/javascript">
+		angular.module('lancheria', []);
+		angular.module('lancheria').controller('lancheriaCtrl', function($scope) {
+			$scope.itens = [
+				{descricao: "Sardinha", preco: 12},
+				{descricao: "Chopp", preco: 8}
+			];
+			$scope.pedidos = [];
+
+			$scope.adicionarPedido = function(form, pedido) {
+				$scope.pedidos.push(pedido);
+				delete $scope.pedido;
+			};
+
+			$scope.removerPedido = function(pedidos) {
+				$scope.pedidos = pedidos.filter(function(pedido) {
+					return !pedido.selecionado;
+				});
+			};
+
+      $scope.totalPedidos = function(pedidos) {
+				return pedidos.reduce(function(acumulador, pedido) {
+					return acumulador + (pedido.quantidade * pedido.item.preco);
+				}, 0);
+      };
+		});
+	</script>
+</head>
+<body ng-controller="lancheriaCtrl">
+
+	<table ng-if="pedidos.length > 0">
+		<tr>
+			<th></th>
+			<th>Item</th>
+			<th>Quantidade</th>
+      <th>Subtotal</th>
+		</tr>
+		<tr ng-repeat="pedido in pedidos">
+			<td><input type="checkbox" ng-model="pedido.selecionado"></td>
+			<td>{{pedido.item.descricao}}</td>
+			<td>{{pedido.quantidade}}</td>
+      <td>{{pedido.quantidade * pedido.item.preco}}</td>
+		</tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Total</td>
+      <td>{{totalPedidos(pedidos)}}</td>
+    </tr>
+	</table>
+	<br/>
+
+  <form name="pedidoForm">
+    <input type="text" name="telefone" placeholder="Telefone" ng-model="pedido.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"><br/>
+  	<select name="item" ng-model="pedido.item" ng-options="item.descricao for item in itens" ng-required="true">
+  		<option value="">Selecione o item</option>
+  	</select><br/>
+  	<input type="text" name="quantidade" placeholder="Quantidade" ng-model="pedido.quantidade" ng-required="true"><br/>
+  </form>
+
+  <span ng-show="pedidoForm.item.$dirty && pedidoForm.item.$invalid">Selecione o item desejado. </span>
+  <span ng-show="pedidoForm.quantidade.$dirty && pedidoForm.quantidade.$invalid">Informe a quantidade desejada. </span>
+
+  <input type="button" value="Adicionar" ng-disabled="pedidoForm.$invalid" ng-click="adicionarPedido(pedidoForm, pedido)">
+	<br/><br/>
+
+	<input type="button" value="Remover pedidos selecionados" ng-click="removerPedido(pedidos)">
+
+</body>
+</html>

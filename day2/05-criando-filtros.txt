@@ -1,0 +1,9 @@
+Criando Filtros
+
+Crie um filtro para limitar a quantidade de caracteres, acrescentando ... ao final da String
+
+angular.module("nomeDoModule").filter("nomeDoFilter", function() {
+  return function(input) {
+    return output;
+  };
+});
